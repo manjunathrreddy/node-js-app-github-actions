@@ -1,0 +1,41 @@
+### This is a demo for GitHub Actions
+name: Deployment Project
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3  ### actions to checkout the code.
+
+      - name: Install Node JS Package
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - name: Install dependancies
+        run: npm ci
+      
+      - name: Run Tests
+        run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3  ### actions to checkout the code.
+
+      - name: Install Node JS Package
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependancies
+        run: npm ci
+      
+      - name: Build Project
+        run: npm run build
+      
+      - name: Deploy Project
+        run: echo "Deploying jobs"
+
+
+
